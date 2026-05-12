@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SensorInput : MonoBehaviour
 {
-    public bool signal;
+    public Bit signal;
 
     public void ActivateSignal()
     {
@@ -12,10 +12,10 @@ public class SensorInput : MonoBehaviour
 
     IEnumerator Pulse()
     {
-        signal = true;
+        signal.setState(true);
 
         yield return new WaitForSeconds(0.2f);
 
-        signal = false;
+        signal.setState(false);
     }
 }

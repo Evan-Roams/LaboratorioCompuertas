@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2111494218929990380
+--- !u!1 &6381968268794397756
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,56 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1726874561085558925}
-  - component: {fileID: 6976974804950678754}
-  - component: {fileID: 4038933179698986599}
+  - component: {fileID: 2457710461722332038}
+  - component: {fileID: 7316564839195422621}
+  - component: {fileID: 2768535750793010024}
   m_Layer: 0
-  m_Name: GateToGateConnector
+  m_Name: BitToBitConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1726874561085558925
+--- !u!4 &2457710461722332038
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111494218929990380}
+  m_GameObject: {fileID: 6381968268794397756}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.48, y: 1, z: -1.66}
+  m_LocalPosition: {x: 0, y: 2.457, z: -7.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6976974804950678754
+--- !u!114 &7316564839195422621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111494218929990380}
+  m_GameObject: {fileID: 6381968268794397756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5af6b7213d12142408cef12fc9401706, type: 3}
+  m_Script: {fileID: 11500000, guid: de42ac436c63e0746acf5c109154851d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  inputGate: {fileID: 0}
-  outputGate: {fileID: 0}
-  isOutputPrimary: 0
-  onColor: {r: 0, g: 1, b: 0, a: 1}
-  offColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
---- !u!120 &4038933179698986599
+  m_EditorClassIdentifier: Assembly-CSharp::BitToBitConnector
+  input: {fileID: 0}
+  output: {fileID: 0}
+  size: 0.05
+  onMaterial: {fileID: 2100000, guid: da5bb52f2d2675f46a02b91200cd01b6, type: 2}
+  offMaterial: {fileID: 2100000, guid: db8e469b843f28f42af56bbcc69a4673, type: 2}
+--- !u!120 &2768535750793010024
 LineRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111494218929990380}
+  m_GameObject: {fileID: 6381968268794397756}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,7 +76,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da5bb52f2d2675f46a02b91200cd01b6, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,8 +100,8 @@ LineRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 2.85, z: -8.53}
+  - {x: 0, y: 2.0442262, z: -6.589796}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -110,7 +110,16 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5
+        value: 0.05
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.05
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -122,8 +131,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
+      key1: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

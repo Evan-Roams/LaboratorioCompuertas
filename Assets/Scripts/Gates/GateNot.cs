@@ -2,6 +2,6 @@ public class NotGate : Gate
 {
     public override void Evaluate()
     {
-        output = !inputA;
+        output.setState( !inputA.getState() );
     }
 }

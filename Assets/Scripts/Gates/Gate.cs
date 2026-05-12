@@ -5,11 +5,11 @@ public abstract class Gate : MonoBehaviour
 {
     
     [Header("Inputs")]
-    public bool inputA;
-    public bool inputB;
+    public Bit inputA;
+    public Bit inputB;
 
     [Header("Output")]
-    public bool output;
+    public Bit output;
 
     [Header("Visual")]
     public List<Renderer> renderers = new List<Renderer>();
@@ -17,23 +17,9 @@ public abstract class Gate : MonoBehaviour
     public Material onMaterial;
     public Material offMaterial;
 
-    public SensorInput sensorA;
-    public SensorInput sensorB;
-
-    public Transform inputPointA;
-    public Transform inputPointB;
-    public Transform outputPoint;
-
     protected virtual void Update()
     {
-        if(sensorA != null)
-        inputA = sensorA.signal;
-
-        if(sensorB != null)
-            inputB = sensorB.signal;
-
         Evaluate();
-
         UpdateVisual();
     }
 
@@ -45,7 +31,7 @@ public abstract class Gate : MonoBehaviour
 
         foreach (Renderer rend in renderers)
         {
-            rend.material = output ? onMaterial : offMaterial;
+            rend.material = output.getState() ? onMaterial : offMaterial;
         }
         
     }

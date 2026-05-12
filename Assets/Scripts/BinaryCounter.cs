@@ -3,17 +3,8 @@ using TMPro;
 
 public class BinaryCounter : MonoBehaviour
 {
-    [Header("BITS")]
-    public Bit Q0;
-    public Bit Q1;
-    public Bit Q2;
-    public Bit Q3;
-
-    [Header("VISUAL LEDS")]
-    public Renderer ledQ0;
-    public Renderer ledQ1;
-    public Renderer ledQ2;
-    public Renderer ledQ3;
+    [Header("LEDS")]
+    public LED[] leds;
 
     [Header("MATERIALS")]
     public Material onMaterial;
@@ -43,39 +34,18 @@ public class BinaryCounter : MonoBehaviour
         if (IsFull)
             return;
 
-        if (!Q0.state)
+        for (int i = 0; i < leds.Length; i++)
         {
-            Q0.state = true;
-        }
-        else
-        {
-            Q0.state = false;
+            bool currentState = leds[i].bit.getState();
 
-            if (!Q1.state)
+            if (!currentState)
             {
-                Q1.state = true;
+                leds[i].bit.setState(true);
+                break;
             }
             else
             {
-                Q1.state = false;
-
-                if (!Q2.state)
-                {
-                    Q2.state = true;
-                }
-                else
-                {
-                    Q2.state = false;
-
-                    if (!Q3.state)
-                    {
-                        Q3.state = true;
-                    }
-                    else
-                    {
-                        Q3.state = false;
-                    }
-                }
+                leds[i].bit.setState(false);
             }
         }
     }
@@ -89,39 +59,18 @@ public class BinaryCounter : MonoBehaviour
         if (GetDecimalValue() <= 0)
             return;
 
-        if (Q0.state)
+        for (int i = 0; i < leds.Length; i++)
         {
-            Q0.state = false;
-        }
-        else
-        {
-            Q0.state = true;
+            bool currentState = leds[i].bit.getState();
 
-            if (Q1.state)
+            if (currentState)
             {
-                Q1.state = false;
+                leds[i].bit.setState(false);
+                break;
             }
             else
             {
-                Q1.state = true;
-
-                if (Q2.state)
-                {
-                    Q2.state = false;
-                }
-                else
-                {
-                    Q2.state = true;
-
-                    if (Q3.state)
-                    {
-                        Q3.state = false;
-                    }
-                    else
-                    {
-                        Q3.state = true;
-                    }
-                }
+                leds[i].bit.setState(true);
             }
         }
     }
@@ -131,16 +80,19 @@ public class BinaryCounter : MonoBehaviour
     // =========================
 
     public int GetDecimalValue()
+{
+    int value = 0;
+
+    for (int i = 0; i < leds.Length; i++)
     {
-        int value = 0;
-
-        if (Q0.state) value += 1;
-        if (Q1.state) value += 2;
-        if (Q2.state) value += 4;
-        if (Q3.state) value += 8;
-
-        return value;
+        if(leds[i].bit.getState())
+        {
+            value += 1 << i;
+        }
     }
+
+    return value;
+}
 
     // =========================
     // VISUALS
@@ -148,18 +100,6 @@ public class BinaryCounter : MonoBehaviour
 
     void UpdateVisuals()
     {
-        if (ledQ0)
-            ledQ0.material = Q0.state ? onMaterial : offMaterial;
-
-        if (ledQ1)
-            ledQ1.material = Q1.state ? onMaterial : offMaterial;
-
-        if (ledQ2)
-            ledQ2.material = Q2.state ? onMaterial : offMaterial;
-
-        if (ledQ3)
-            ledQ3.material = Q3.state ? onMaterial : offMaterial;
-
         if (counterText)
         {
             counterText.text =GetDecimalValue().ToString();

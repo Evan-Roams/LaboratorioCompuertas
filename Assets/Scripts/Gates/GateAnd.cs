@@ -2,6 +2,6 @@ public class GateAnd : Gate
 {
    public override void Evaluate()
    {
-        output = inputA && inputB;
+        output.setState( inputA.getState() && inputB.getState() );
     }
 }
