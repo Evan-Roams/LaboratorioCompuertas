@@ -1,6 +1,4 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="AI Package.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="Dialgoue.csproj" />
 </Solution>
