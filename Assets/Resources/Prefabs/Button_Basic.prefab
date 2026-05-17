@@ -139,7 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   led: {fileID: 3799522094041671910}
   bit: {fileID: 5554101476584502059}
-  button: {fileID: 912340711391962105}
+  buttonButton: {fileID: 912340711391962105}
+  pressDistance: 0.02
+  pressSpeed: 8
 --- !u!1 &5135249428889243825
 GameObject:
   m_ObjectHideFlags: 0

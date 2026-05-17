@@ -8,6 +8,7 @@ public class NPCPathFollower : MonoBehaviour
 
     public Transform[] truePath;
     public Transform[] falsePath;
+    public ForDoorButton forDoorButton;
     private bool waitingDecision = false;
 
     private bool? decisionResult = null;

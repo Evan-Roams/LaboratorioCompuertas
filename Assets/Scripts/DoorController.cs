@@ -7,79 +7,89 @@ public class DoorController : MonoBehaviour
     public Transform openPosition;
     public Transform closedPosition;
 
+    [Header("State")]
     public bool isOpened;
     public bool isClosed = true;
 
-    [Tooltip("Tiempo en segundos que tarda en abrir/cerrar")]
+    private bool moving;
+    private bool opening;
+
+    [Tooltip("Tiempo en segundos que tarda")]
     public float movementTime = 2f;
 
     private float movementSpeed;
 
+    private Vector3 targetPosition;
+
     void Start()
     {
-        // Calcula automáticamente la velocidad necesaria
-        float distance = Vector3.Distance(openPosition.position, closedPosition.position);
+        float distance = Vector3.Distance(
+            openPosition.position,
+            closedPosition.position
+        );
 
         movementSpeed = distance / movementTime;
+
+        targetPosition = closedPosition.position;
     }
 
     void Update()
     {
-        if (isOpened)
-        {
-            OpenDoor();
-        }
+        if (!moving)
+            return;
 
-        if (isClosed)
-        {
-            CloseDoor();
-        }
-    }
-
-    void OpenDoor()
-    {
         doorBody.position = Vector3.MoveTowards(
             doorBody.position,
-            openPosition.position,
+            targetPosition,
             movementSpeed * Time.deltaTime
         );
 
-        // Cuando llegue al destino
-        if (Vector3.Distance(doorBody.position, openPosition.position) < 0.01f)
-        {
-            doorBody.position = openPosition.position;
-
-            isOpened = false;
-        }
-    }
-
-    void CloseDoor()
-    {
-        doorBody.position = Vector3.MoveTowards(
+        if (Vector3.Distance(
             doorBody.position,
-            closedPosition.position,
-            movementSpeed * Time.deltaTime
-        );
-
-        // Cuando llegue al destino
-        if (Vector3.Distance(doorBody.position, closedPosition.position) < 0.01f)
+            targetPosition) < 0.01f)
         {
-            doorBody.position = closedPosition.position;
+            doorBody.position = targetPosition;
 
-            isClosed = false;
+            moving = false;
+
+            if (opening)
+            {
+                isOpened = true;
+                isClosed = false;
+            }
+            else
+            {
+                isOpened = false;
+                isClosed = true;
+            }
         }
     }
 
-    // Funciones públicas para llamar desde otros scripts
     public void Open()
     {
-        isOpened = true;
+        if (moving || isOpened)
+            return;
+
+        targetPosition = openPosition.position;
+
+        moving = true;
+        opening = true;
+
+        isOpened = false;
         isClosed = false;
     }
 
     public void Close()
     {
-        isClosed = true;
+        if (moving || isClosed)
+            return;
+
+        targetPosition = closedPosition.position;
+
+        moving = true;
+        opening = false;
+
         isOpened = false;
+        isClosed = false;
     }
 }
